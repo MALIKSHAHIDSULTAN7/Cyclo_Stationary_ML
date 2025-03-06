@@ -8,10 +8,10 @@ import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 np.random.seed(150)
-data_X_train = np.load("/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/X_train_Raw_ECG.npy")
-data_Y_train = np.load("/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/Y_train_Raw_ECG.npy")
-data_X_test  = np.load("/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/X_test_Raw_ECG.npy")
-data_Y_test  =  np.load("/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/Y_test_Raw_ECG.npy")
+data_X_train = np.load("path")
+data_Y_train = np.load("path")
+data_X_test  = np.load("path")
+data_Y_test  =  np.load("path")
 print("Training Data")
 print(data_X_train.shape)
 print(data_Y_train.shape)
