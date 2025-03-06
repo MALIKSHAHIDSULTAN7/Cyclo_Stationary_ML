@@ -32,7 +32,7 @@ from sklearn.model_selection import GridSearchCV
 np.random.seed(150)
 ############ Reading Data #############
 #######################################
-data_path = '/Users/sultm0a/Downloads/RYXA_DATA_ALL_Particpants_During_Music.csv'
+data_path = 'path'
 ryxa_data = pd.read_csv(data_path)
 number_of_Participants = len(ryxa_data['Participant'].unique())
 print("Number of Participants = {}".format(number_of_Participants))
