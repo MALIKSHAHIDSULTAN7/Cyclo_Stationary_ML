@@ -19,7 +19,7 @@ np.random.seed(150)
 ############ Reading Data #############
 #######################################
 
-data_path = '/Users/sultm0a/Downloads/FC_DATA_ALL_Particpants_During_Music.csv'
+data_path = 'data_path'
 fourier_coeffs = pd.read_csv(data_path)
 print(fourier_coeffs.head())
 fourier_coeffs['Fourier_Coeffs'] = np.abs(fourier_coeffs['Fourier_Coeffs'].astype(complex))
