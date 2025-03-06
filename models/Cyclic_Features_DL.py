@@ -201,7 +201,7 @@ model = Model(inputs=visible, outputs=output)
 
 # compile autoencoder model
 
-checkpoint = ModelCheckpoint('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/best_model_cyclic.h5', monitor='val_accuracy', save_best_only=True, mode='max', verbose=1)
+checkpoint = ModelCheckpoint('save_path', monitor='val_accuracy', save_best_only=True, mode='max', verbose=1)
 early_stopping = EarlyStopping(monitor='val_accuracy', patience= 50, mode='max', verbose=1)
 
 optimizer = Adam(learning_rate=1e-3)
@@ -214,7 +214,7 @@ history = model.fit(
     validation_data=(X_test_RYXA_scaled, Y_test_RYXA_enc),
     callbacks=[checkpoint, early_stopping]
 )
-best_model = load_model('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/best_model_cyclic.h5')
+best_model = load_model('save_path')
 predictions= best_model.predict(X_test_RYXA_scaled)
 predictions = np.argmax(predictions, axis= 1)
 print(classification_report(Y_test_RYXA_enc,predictions ))
