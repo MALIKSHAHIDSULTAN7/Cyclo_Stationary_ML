@@ -167,10 +167,10 @@ for run in range(runs):
   ######################### Random Forest Cross Validation ###################
 
 
-  # Define the Random Forest classifier
+  #  Random Forest classifier
   rf_classifier = RandomForestClassifier()
 
-  # Define the parameter grid to search through
+  # parameter grid to search 
   param_grid = {
       'n_estimators': [50, 100, 200],
       'max_depth': [None, 10, 20],
@@ -178,23 +178,23 @@ for run in range(runs):
       'min_samples_leaf': [1, 2, 4]
   }
 
-  # Create a stratified k-fold cross-validator
+  # stratified k-fold cross-validator
   cv_stratified = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
-  # Perform GridSearchCV for hyperparameter tuning
+  # GridSearchCV for hyperparameter tuning
   grid_search = GridSearchCV(estimator=rf_classifier, param_grid=param_grid, 
                             scoring='accuracy', cv=cv_stratified, verbose= 2)
   grid_search.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
-  # Get the best parameters from the grid search
+  # best parameters from the grid search
   best_params = grid_search.best_params_
   print('Random Forest Best Parameters')
   print(best_params)
-  # Train the model with the best parameters on the entire training set
+  # training model with the best parameters on the entire training set
   best_rf_classifier = RandomForestClassifier(**best_params)
   best_rf_classifier.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
-  # Make predictions on the test set
+  # predictions on the test set
   y_pred = best_rf_classifier.predict(X_test_RYXA_scaled)
   acc    = accuracy_score(Y_test_RYXA_enc, y_pred)
   prec   = precision_score(Y_test_RYXA_enc, y_pred,average="macro")
@@ -210,7 +210,7 @@ for run in range(runs):
 
   # Print the best hyperparameters
   print("Best Hyperparameters:", best_params)
-  with open('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/rf.txt', 'w') as f:
+  with open('enter_saving_path', 'w') as f:
     f.write('\n')
     f.write(str(run))
     f.write('\n')
@@ -234,28 +234,28 @@ for run in range(runs):
 
   knn_classifier = KNeighborsClassifier()
 
-  # Define the parameter grid to search through
+  #  parameter grid to search through
   param_grid_knn = {
       'n_neighbors': [3, 5, 7],
       'weights': ['uniform', 'distance'],
       'p': [1, 2]
   }
 
-  # Perform GridSearchCV for hyperparameter tuning
+  # GridSearchCV for hyperparameter tuning
   grid_search_knn = GridSearchCV(estimator=knn_classifier, param_grid=param_grid_knn, 
                                   scoring='accuracy', cv=cv_stratified, verbose=2)
   grid_search_knn.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
-  # Get the best parameters from the grid search
+  #  best parameters from the grid search
   best_params_knn = grid_search_knn.best_params_
   #print('KNN Best Parameters')
   #print(best_params_knn)
 
-  # Train the model with the best parameters on the entire training set
+  # Train  model with the best parameters on the entire training set
   best_knn_classifier = KNeighborsClassifier(**best_params_knn)
   best_knn_classifier.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
-  # Make predictions on the test set
+  # predictions on the test set
   y_pred_knn = best_knn_classifier.predict(X_test_RYXA_scaled)
 
   acc    = accuracy_score(Y_test_RYXA_enc, y_pred_knn)
@@ -270,9 +270,9 @@ for run in range(runs):
   # Compute the confusion matrix
 #  conf_matrix = classification_report(Y_test_RYXA_enc, y_pred)
 
-  # Print the best hyperparameters
+  #  the best hyperparameters
   print("Best Hyperparameters:", best_params)
-  with open('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/knn.txt', 'w') as f:
+  with open('save_path', 'w') as f:
     f.write('\n')
     f.write(str(run))
     f.write('\n')
@@ -301,24 +301,24 @@ for run in range(runs):
   # SVM classifier
   svm_classifier = SVC()
 
-  # Define the parameter grid to search through
+  # parameter grid to search through
   param_grid_svm = {
       'C': [0.1, 0.3, 1, 10],
       'kernel': ['linear', 'rbf'],
       'gamma': ['scale', 'auto'],
   }
 
-  # Perform GridSearchCV for hyperparameter tuning
+  #  GridSearchCV for hyperparameter tuning
   grid_search_svm = GridSearchCV(estimator=svm_classifier, param_grid=param_grid_svm, 
                                 scoring='accuracy', cv=cv_stratified, verbose=2)
   grid_search_svm.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
-  # Get the best parameters from the grid search
+  # best parameters from the grid search
   best_params_svm = grid_search_svm.best_params_
   #print('SVM Best Parameters')
   #print(best_params_svm)
 
-  # Train the model with the best parameters on the entire training set
+  # Train  model with the best parameters on the entire training set
   best_svm_classifier = SVC(**best_params_svm)
   best_svm_classifier.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
@@ -339,7 +339,7 @@ for run in range(runs):
 
   # Print the best hyperparameters
   print("Best Hyperparameters:", best_params)
-  with open('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/svm.txt', 'w') as f:
+  with open('save_path', 'w') as f:
     f.write('\n')
     f.write(str(run))
     f.write('\n')
@@ -363,7 +363,7 @@ for run in range(runs):
   # XGBoost classifier
   xgb_classifier = XGBClassifier()
 
-  # Define the parameter grid to search through
+  #  parameter grid to search through
   param_grid_xgb = {
       'learning_rate': [0.01, 0.001, 0.1],
       'n_estimators': [50, 100, 200],
@@ -376,12 +376,12 @@ for run in range(runs):
                                 scoring='accuracy', cv=cv_stratified, verbose=2)
   grid_search_xgb.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
-  # Get the best parameters from the grid search
+  # best parameters from the grid search
   best_params_xgb = grid_search_xgb.best_params_
   #print('XGBoost Best Parameters')
   #print(best_params_xgb)
 
-  # Train the model with the best parameters on the entire training set
+  # Train  model with the best parameters on the entire training set
   best_xgb_classifier = XGBClassifier(**best_params_xgb)
   best_xgb_classifier.fit(X_train_RYXA_scaled, Y_train_RYXA_enc)
 
@@ -401,7 +401,7 @@ for run in range(runs):
 
   # Print the best hyperparameters
   print("Best Hyperparameters:", best_params)
-  with open('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/xgb.txt', 'w') as f:
+  with open('save_path', 'w') as f:
     f.write('\n')
     f.write(str(run))
     f.write('\n')
@@ -461,7 +461,7 @@ for run in range(runs):
 
   # Print the best hyperparameters
   #print("Best Hyperparameters:", best_params)
-  with open('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/lda.txt', 'w') as f:
+  with open('save_path', 'w') as f:
     f.write('\n')
     f.write(str(run))
     f.write('\n')
@@ -479,8 +479,8 @@ for run in range(runs):
   # Compute and print accuracy
   #accuracy_lda = accuracy_score(Y_test_RYXA_enc, y_pred_lda)
   #print("Accuracy (LDA):", accuracy_lda)
-np.save('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/rfc.npy', rf_results)
-np.save('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/svm.npy', svm_results)
-np.save('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/xgb.npy', xgb_results)
-np.save('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/lda.npy', lda_results)
-np.save('/Users/sultm0a/Documents/Research/Cyclo_Stationary_ML/models/knn.npy', knn_results)
+np.save('save_path', rf_results)
+np.save('save_path', svm_results)
+np.save('save_path', xgb_results)
+np.save('save_path', lda_results)
+np.save('save_path', knn_results)
