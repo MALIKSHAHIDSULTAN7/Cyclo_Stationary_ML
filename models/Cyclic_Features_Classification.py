@@ -27,7 +27,7 @@ lda_results = np.zeros(shape  = (runs,attributes_to_measure))
 knn_results = np.zeros(shape  = (runs,attributes_to_measure))
 svm_results = np.zeros(shape  = (runs,attributes_to_measure))
 xgb_results = np.zeros(shape  = (runs,attributes_to_measure))
-data_path = '/Users/sultm0a/Downloads/RYXA_DATA_ALL_Particpants_During_Music.csv'
+data_path = 'path'
 ryxa_data = pd.read_csv(data_path)
 number_of_Participants = len(ryxa_data['Participant'].unique())
 print("Number of Participants = {}".format(number_of_Participants))
