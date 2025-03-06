@@ -8,7 +8,7 @@ import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 np.random.seed(150)
-data_path = '/Users/sultm0a/Downloads/RAW_ECG_DATA_All_Participants.csv'
+data_path = 'data_path'
 data = pd.read_csv(data_path)
 data = data.iloc[:,1:]
 participants = list(data['Participant'].unique())
